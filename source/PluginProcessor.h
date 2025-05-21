@@ -10,6 +10,7 @@ class PluginProcessor : public juce::AudioProcessor
 {
 public:
     PluginProcessor();
+    juce::AudioProcessorValueTreeState parameters;
     ~PluginProcessor() override;
 
     void prepareToPlay (double sampleRate, int samplesPerBlock) override;
@@ -38,6 +39,11 @@ public:
     void getStateInformation (juce::MemoryBlock& destData) override;
     void setStateInformation (const void* data, int sizeInBytes) override;
 
+
 private:
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (PluginProcessor)
+    float lowPassCoeff = 0.0f;
+    int sampleCountDown = 0;
 };
+
+//==============================================================================
